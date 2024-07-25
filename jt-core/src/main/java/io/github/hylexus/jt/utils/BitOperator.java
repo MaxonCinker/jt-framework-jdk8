@@ -36,7 +36,7 @@ public interface BitOperator {
     /**
      * @deprecated use {@link #mapIf(Function, Boolean)} instead.
      */
-    @Deprecated(forRemoval = true, since = "2.1.5")
+    @Deprecated
     default BitOperator map(Function<Long, Long> mapper, Boolean condition) {
         if (condition) {
             return map(mapper);
@@ -47,7 +47,7 @@ public interface BitOperator {
     /**
      * @deprecated use {@link #mapIf(Function, Predicate)} instead.
      */
-    @Deprecated(forRemoval = true, since = "2.1.5")
+    @Deprecated
     default BitOperator map(Function<Long, Long> mapper, Predicate<Long> predicate) {
         if (predicate.test(this.value())) {
             return map(mapper);
@@ -58,7 +58,7 @@ public interface BitOperator {
     /**
      * @deprecated use {@link #mapIf(Function, Supplier)} instead.
      */
-    @Deprecated(forRemoval = true, since = "2.1.5")
+    @Deprecated
     default BitOperator map(Function<Long, Long> mapper, Supplier<Boolean> supplier) {
         return map(mapper, it -> supplier.get());
     }
@@ -149,7 +149,7 @@ public interface BitOperator {
     /**
      * @deprecated use {@link #setWithStatus(int, boolean)} instead.
      */
-    @Deprecated(forRemoval = true, since = "2.1.5")
+    @Deprecated
     default BitOperator set(int offset, boolean status) {
         return this.setWithStatus(offset, status);
     }
@@ -162,7 +162,7 @@ public interface BitOperator {
     /**
      * @deprecated use {@link #setIf(int, Predicate)} instead.
      */
-    @Deprecated(forRemoval = true, since = "2.1.5")
+    @Deprecated
     default BitOperator set(int offset, Predicate<Long> predicate) {
         if (predicate.test(this.value())) {
             return this.set(offset);
@@ -239,7 +239,7 @@ public interface BitOperator {
     /**
      * @deprecated use {@link #resetIf(int, Predicate)} instead.
      */
-    @Deprecated(forRemoval = true, since = "2.1.5")
+    @Deprecated
     default BitOperator reset(int offset, Predicate<Long> predicate) {
         if (predicate.test(this.value())) {
             return this.reset(offset);
@@ -428,7 +428,7 @@ public interface BitOperator {
     default String hexString(int minLeadingZeros) {
         final String hexString = this.hexString();
         if (hexString.length() < minLeadingZeros) {
-            return "0".repeat(minLeadingZeros - hexString.length()) + hexString;
+            return Jdk8Adapter.stringRepeat("0", minLeadingZeros - hexString.length()) + hexString;
         }
         return hexString;
     }
@@ -458,7 +458,7 @@ public interface BitOperator {
     static String binaryString(int minLeadingZeros, int value) {
         final String string = Integer.toBinaryString(value);
         if (string.length() < minLeadingZeros) {
-            return "0".repeat(minLeadingZeros - string.length()) + string;
+            return Jdk8Adapter.stringRepeat("0", minLeadingZeros - string.length()) + string;
         }
         return string;
     }
@@ -466,7 +466,7 @@ public interface BitOperator {
     static String binaryString(int minLeadingZeros, long value) {
         final String string = Long.toBinaryString(value);
         if (string.length() < minLeadingZeros) {
-            return "0".repeat(minLeadingZeros - string.length()) + string;
+            return Jdk8Adapter.stringRepeat("0", minLeadingZeros - string.length()) + string;
         }
         return string;
     }
