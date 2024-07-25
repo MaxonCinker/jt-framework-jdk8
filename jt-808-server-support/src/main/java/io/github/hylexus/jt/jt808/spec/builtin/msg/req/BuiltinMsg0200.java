@@ -19,6 +19,6 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @Jt808RequestBody
 @BuiltinComponent
-@Deprecated(forRemoval = true, since = "2.1.1")
+@Deprecated
 public class BuiltinMsg0200 {
 }

@@ -20,9 +20,9 @@ public interface Jt808CommandKey {
     Optional<Integer> serverFlowId();
 
     default String getKeyAsString() {
-        return serverFlowId().isEmpty()
-                ? String.format("%s_%s", terminalId(), int2HexString(terminalReplyMsgId(), 4))
-                : String.format("%s_%s_%s", terminalId(), int2HexString(terminalReplyMsgId(), 4), serverFlowId().get());
+        return serverFlowId().isPresent()
+                ? String.format("%s_%s_%s", terminalId(), int2HexString(terminalReplyMsgId(), 4), serverFlowId().get())
+                : String.format("%s_%s", terminalId(), int2HexString(terminalReplyMsgId(), 4));
     }
 
     default String getWaitingFlag() {
