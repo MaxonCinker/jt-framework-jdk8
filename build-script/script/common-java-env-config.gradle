@@ -109,7 +109,7 @@ javadoc {
 
 apply plugin: "checkstyle"
 checkstyle {
-    toolVersion = "10.9.1"
+    toolVersion = "8.29"
     getConfigDirectory().set(rootProject.file("build-script/checkstyle/"))
 }
 
