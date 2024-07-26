@@ -28,7 +28,7 @@ public class BuiltinRetransmissionHandler {
 
     @Jt808RequestHandlerMapping(msgType = 0x0005)
     public void processRetransmissionMsg(Jt808RequestEntity<BuiltinMsg0005> request) {
-        final Jt808Session session = this.sessionManager.findByTerminalId(request.terminalId()).orElseThrow(Jdk8Adapter::optionalOrElseThrow);
+        final Jt808Session session = this.sessionManager.findByTerminalId(request.terminalId()).orElseThrow(Jdk8Adapter::optionalOrElseThrowException);
         final BuiltinMsg0005 body = request.body();
         this.subPackageEventConsumer.getSubPackageMsg(
                 request.terminalId(),

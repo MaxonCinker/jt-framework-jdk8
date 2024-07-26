@@ -54,7 +54,7 @@ public class Jt808RequestHandlerMappingHandlerMapping
     public Stream<RequestMappingReporter> report() {
         return this.msgHandlerComponentMapping.getMappings().entrySet().stream().flatMap(entry -> {
             final Integer msgId = entry.getKey();
-            final MsgType msgType = msgTypeParser.parseMsgType(msgId).orElseThrow(Jdk8Adapter::optionalOrElseThrow);
+            final MsgType msgType = msgTypeParser.parseMsgType(msgId).orElseThrow(Jdk8Adapter::optionalOrElseThrowException);
             return entry.getValue().entrySet().stream()
                     .map(it -> new RequestMappingReporter(
                             msgType, it.getKey(), it.getValue(),

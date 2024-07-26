@@ -22,7 +22,7 @@ public class Jdk8Adapter {
         return !optional.isPresent();
     }
 
-    public static NoSuchElementException optionalOrElseThrow() {
+    public static NoSuchElementException optionalOrElseThrowException() {
         return new NoSuchElementException("No value present");
     }
 
